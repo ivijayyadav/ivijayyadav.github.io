@@ -203,7 +203,7 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 .edu-school { color: var(--text-muted); font-size: 0.95rem; }
 
 /* =========================================================================
-   Split sections (News, Publications): heading left, content right
+   Split sections (Publications): heading left, content right
    ========================================================================= */
 .split-grid {
   display: grid;
@@ -212,11 +212,6 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   align-items: start;
 }
 .split-section + .split-section { border-top: 1px solid var(--border); }
-
-/* News feed (inner scroll, like the reference) */
-.news-feed { max-height: 460px; overflow-y: auto; padding-right: 0.75rem; }
-.news-item { margin-bottom: 1.35rem; }
-.news-date { font-weight: 800; color: var(--heading); margin-right: 0.3rem; }
 
 /* Publications */
 .pub-item {
