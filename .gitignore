@@ -1,0 +1,17 @@
+# --- macOS junk ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# --- Editor / IDE files ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Logs & temp ---
+*.log
+.cache/
+node_modules/
