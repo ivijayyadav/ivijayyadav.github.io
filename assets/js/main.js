@@ -11,6 +11,16 @@
      If the visitor hasn't chosen, we follow their OS setting.            */
   function applyTheme(theme) {
     root.setAttribute("data-theme", theme);
+
+    // The toggle is labelled with what tapping it will do, not the current theme
+    var next = theme === "dark" ? "Light mode" : "Dark mode";
+    var btn = document.querySelector(".theme-toggle");
+    if (!btn) return;
+
+    var label = btn.querySelector(".theme-label");
+    if (label) label.textContent = next;
+    btn.setAttribute("aria-label", "Switch to " + next.toLowerCase());
+    btn.setAttribute("title", "Switch to " + next.toLowerCase());
   }
 
   var saved = localStorage.getItem("theme");

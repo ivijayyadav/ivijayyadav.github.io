@@ -100,7 +100,7 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   display: flex;
   align-items: center;
   gap: 1.35rem;
-  margin-right: auto;      /* pushes the actions to the far right */
+  flex: 1;
 }
 .nav-links a {
   color: var(--text);
@@ -110,10 +110,12 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 .nav-links a:hover { color: var(--link); text-decoration: none; }
 .nav-links a.active { color: var(--link); }
 
-.nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+/* Holds the hamburger only, so it stays out of the way on desktop */
+.nav-actions { display: none; align-items: center; gap: 0.75rem; }
 .icon-btn {
   background: none;
   border: none;
+  font-family: inherit;
   color: var(--text);
   cursor: pointer;
   padding: 0.35rem;
@@ -124,6 +126,8 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 }
 .icon-btn:hover { color: var(--link); background: rgba(127, 127, 127, 0.12); }
 .icon-btn svg { width: 20px; height: 20px; }
+.theme-toggle { margin-left: auto; }
+.theme-label { display: none; }
 /* Show the correct toggle glyph for the active theme */
 .theme-toggle .icon-moon { display: inline; }
 .theme-toggle .icon-sun  { display: none; }
@@ -157,10 +161,11 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 .profile-name {
   font-size: 2.1rem;
   font-weight: 400;
-  margin: 0.25rem 0 0.35rem;
+  margin: 0.25rem 0 0.2rem;
 }
-.profile-role { color: var(--text-muted); font-size: 1.1rem; margin: 0 0 0.2rem; }
-.profile-org  { display: inline-block; font-size: 1.05rem; margin-bottom: 1rem; }
+.profile-role,
+.profile-dept { color: var(--text-muted); font-size: 1.1rem; line-height: 1.35; margin: 0; }
+.profile-org  { display: inline-block; font-size: 1.05rem; line-height: 1.35; margin: 0.15rem 0 0.75rem; }
 
 .social-icons {
   display: flex;
@@ -179,6 +184,9 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   margin: 0 0 1.25rem;
 }
 .bio p { margin: 0 0 1.1rem; }
+/* Institution names sit in the text colour; the link shows on hover */
+.bio > p a,
+.edu-school a { color: inherit; }
 
 /* Interests + Education */
 .info-grid {
@@ -201,6 +209,7 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 .edu-list svg { width: 22px; height: 22px; color: var(--text); margin-top: 4px; }
 .edu-degree { font-weight: 700; color: var(--heading); }
 .edu-school { color: var(--text-muted); font-size: 0.95rem; }
+.edu-date { color: var(--text-muted); font-size: 0.85rem; margin-left: 0.4rem; white-space: nowrap; }
 
 /* =========================================================================
    Split sections (Publications): heading left, content right
@@ -217,12 +226,19 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 .pub-item {
   display: grid;
   grid-template-columns: 1fr 200px;
-  gap: 1.5rem;
+  grid-template-areas:
+    "tags thumb"
+    "body thumb";
+  grid-template-rows: auto 1fr;
+  column-gap: 1.5rem;
+  row-gap: 0;
   padding-bottom: 1.75rem;
   margin-bottom: 1.75rem;
   border-bottom: 1px solid var(--border);
 }
 .pub-item:last-child { border-bottom: none; margin-bottom: 0; }
+.pub-tags { grid-area: tags; }
+.pub-body { grid-area: body; }
 .pub-tag {
   display: inline-block;
   font-size: 0.7rem;
@@ -240,20 +256,8 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 .pub-title { font-size: 1.3rem; font-weight: 800; margin: 0 0 0.4rem; }
 .pub-title a { color: var(--heading); }
 .pub-title a:hover { color: var(--link); }
-.pub-year {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #6b5300;
-  background: #fff3c4;
-  border-radius: 4px;
-  padding: 0.1rem 0.5rem;
-  margin-left: 0.5rem;
-  vertical-align: middle;
-}
 .pub-summary { margin: 0 0 0.6rem; }
 .pub-authors { color: var(--text-muted); font-size: 0.95rem; margin: 0 0 0.8rem; }
-.pub-authors .me { text-decoration: underline; }
 .pub-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .btn-pill {
   font-size: 0.85rem;
@@ -271,6 +275,7 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   text-decoration: none;
 }
 .pub-thumb {
+  grid-area: thumb;
   background: var(--thumb-bg);
   border-radius: 6px;
   min-height: 120px;
@@ -288,10 +293,11 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
    ========================================================================= */
 .site-footer {
   border-top: 1px solid var(--border);
-  padding: 2rem 0;
+  padding: 0.9rem 0;
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  /* Scales with viewport so the credit line stays on one line on phones */
+  font-size: clamp(0.62rem, calc(3.53vw - 1.91px), 0.9rem);
 }
 .site-footer a { color: var(--text-muted); text-decoration: none; }
 
@@ -339,14 +345,13 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   align-items: baseline;
 }
 .cv-role { font-weight: 700; color: var(--heading); font-size: 1.1rem; }
-.cv-org { color: var(--link); font-weight: 600; }
+.cv-org { color: var(--link); font-weight: 600; font-style: italic; }
 .cv-meta { color: var(--text-muted); font-size: 0.9rem; }
 .cv-entry ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
 .cv-entry li { margin-bottom: 0.25rem; }
 
 .cv-list { padding-left: 1.2rem; margin: 0; }
 .cv-list li { margin-bottom: 0.7rem; }
-.cv-list .cv-org { font-style: italic; }
 
 .year-tag {
   display: inline-block;
@@ -374,19 +379,41 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 /* =========================================================================
    Responsive
    ========================================================================= */
+
+/* Below this the Education column is too narrow to keep the date on the
+   degree line, so Interests and Education stack instead */
+@media (max-width: 1080px) {
+  .info-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 860px) {
   .hero-grid,
   .split-grid,
-  .info-grid,
-  .pub-item { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
 
-  .pub-thumb { order: -1; min-height: 160px; }
+  .section { padding: 2.25rem 0; }
+  .section-title { font-size: 2rem; margin-bottom: 1rem; }
+  .split-grid { gap: 1.25rem; }
+  .info-grid { margin-top: 1.25rem; }
+  .edu-list li:last-child { margin-bottom: 0; }
+
+  .pub-item {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "tags"
+      "thumb"
+      "body";
+    grid-template-rows: auto;
+    row-gap: 0.9rem;
+  }
+  .pub-thumb { min-height: 0; }
 
   /* Collapsible mobile nav */
-  .nav-toggle {
-    display: inline-flex;
+  .nav-actions {
+    display: flex;
     margin-left: auto;
   }
+  .nav-toggle { display: inline-flex; }
   .nav-links {
     display: none;
     position: absolute;
@@ -402,5 +429,18 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 0.6rem 0; width: 100%; }
-  .nav-actions { margin-left: 0.5rem; }
+
+  /* Theme switch reads as another menu row here */
+  .theme-toggle {
+    margin-left: 0;
+    padding: 0.6rem 0;
+    width: 100%;
+    gap: 0.6rem;
+    justify-content: flex-start;
+    border-radius: 0;
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+  .theme-toggle:hover { background: none; }
+  .theme-label { display: inline; }
 }
