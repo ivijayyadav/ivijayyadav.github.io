@@ -186,7 +186,7 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 .bio p { margin: 0 0 1.1rem; }
 /* Institution names sit in the text colour; the link shows on hover */
 .bio > p a,
-.edu-school a { color: inherit; }
+.edu-school a { color: var(--link); }
 
 /* Interests + Education */
 .info-grid {
@@ -254,8 +254,8 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 .pub-tag--macromolecules { color: #0f5c4a; background: #c8efe0; }
 .pub-tag--chaos { color: #5a2a7a; background: #e7d3f5; }
 .pub-title { font-size: 1.3rem; font-weight: 800; margin: 0 0 0.4rem; }
-.pub-title a { color: var(--heading); }
-.pub-title a:hover { color: var(--link); }
+.pub-title a { color: var(--link); }
+.pub-title a:hover { color: var(--link-hover); }
 .pub-summary { margin: 0 0 0.6rem; }
 .pub-authors { color: var(--text-muted); font-size: 0.95rem; margin: 0 0 0.8rem; }
 .pub-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -335,6 +335,21 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 }
 .cv-embed-fallback { padding: 2rem 1.5rem; }
 
+/* The HTML CV is only for phones/tablets (see the media query at the end) */
+.cv-html { display: none; }
+.cv-heading {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 0.9rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--link);
+}
+.cv-subheading { font-size: 1.1rem; font-weight: 800; margin: 1rem 0 0.5rem; }
+.cv-dated { list-style: none; padding-left: 0; margin: 0; }
+.cv-dated li { margin-bottom: 0.6rem; }
+.cv-section p { margin: 0 0 0.8rem; }
+a.cv-role { color: var(--link); }
+
 .cv-section { margin-bottom: 2.75rem; }
 .cv-entry { margin-bottom: 1.5rem; }
 .cv-entry-head {
@@ -345,13 +360,16 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   align-items: baseline;
 }
 .cv-role { font-weight: 700; color: var(--heading); font-size: 1.1rem; }
-.cv-org { color: var(--link); font-weight: 600; font-style: italic; }
+.cv-org { color: var(--link); font-style: italic; }
 .cv-meta { color: var(--text-muted); font-size: 0.9rem; }
 .cv-entry ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
 .cv-entry li { margin-bottom: 0.25rem; }
 
 .cv-list { padding-left: 1.2rem; margin: 0; }
 .cv-list li { margin-bottom: 0.7rem; }
+/* Year groups on the Publications page: compact, divided by a thin rule */
+.pub-year { border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 1.25rem; }
+.pub-year .year-tag { margin-bottom: 0.6rem; }
 
 .year-tag {
   display: inline-block;
@@ -443,4 +461,10 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   }
   .theme-toggle:hover { background: none; }
   .theme-label { display: inline; }
+}
+
+/* Phones and tablets: show the HTML CV instead of the inline PDF */
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+  .cv-pdf { display: none; }
+  .cv-html { display: block; }
 }

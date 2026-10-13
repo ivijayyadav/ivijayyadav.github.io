@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV · Vijay Yadav</title>
   <meta name="description" content="Curriculum Vitae of Vijay Yadav, Ph.D. student at IIT Jodhpur.">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,9 +43,205 @@
   </header>
 
   <main>
-    <object class="cv-embed" data="assets/docs/cv_vijay.pdf" type="application/pdf">
+    <!-- Desktop: the PDF itself. Phones/tablets can't render an inline PDF well,
+         so styles.css hides this there and shows the HTML version below instead. -->
+    <object class="cv-embed cv-pdf" data="assets/docs/cv_vijay.pdf" type="application/pdf">
       <p class="cv-embed-fallback">Your browser can’t display the PDF inline. <a href="assets/docs/cv_vijay.pdf" download>Download the CV</a> instead.</p>
     </object>
+
+    <!-- Phones/tablets: HTML copy of the CV. Keep in sync with assets/docs/cv_vijay.pdf -->
+    <div class="container cv-html">
+      <section class="section">
+        <div class="page-header">
+          <h1 class="section-title">Vijay Yadav</h1>
+          <a class="btn-download" href="assets/docs/cv_vijay.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            PDF
+          </a>
+        </div>
+        <p class="page-tagline">Ph.D. Student, Department of Physics, IIT Jodhpur</p>
+
+        <!-- ===== Education ===== -->
+        <div class="cv-section">
+          <h2 class="cv-heading">Education</h2>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <span class="cv-role">Ph.D. Physics</span>
+              <span class="cv-meta">12/2021 – expected 04/2027</span>
+            </div>
+            <div class="cv-entry-head">
+              <strong>Indian Institute of Technology Jodhpur</strong>
+              <span class="cv-meta">Rajasthan, India</span>
+            </div>
+            <ul>
+              <li>Thesis title: Data-Driven Surrogate Models for Phase-Ordering Kinetics and Charge Regulation Effects.</li>
+              <li>PhD advisor: Prabhat K. Jaiswal</li>
+            </ul>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <span class="cv-role">M.Sc. Physics</span>
+              <span class="cv-meta">08/2018 – 06/2020</span>
+            </div>
+            <div class="cv-entry-head">
+              <strong>National Institute of Technology Tiruchirappalli</strong>
+              <span class="cv-meta">Tamil Nadu, India</span>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <span class="cv-role">B.Sc. (Hons.) Physics</span>
+              <span class="cv-meta">07/2015 – 06/2018</span>
+            </div>
+            <div class="cv-entry-head">
+              <strong>University of Delhi</strong>
+              <span class="cv-meta">New Delhi, India</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Research Interests ===== -->
+        <div class="cv-section">
+          <h2 class="cv-heading">Research Interests</h2>
+          <p>
+            My research lies at the intersection of soft matter physics, molecular simulation, and scientific machine learning.
+            I am interested in developing physics-guided, data-driven surrogate models that accelerate molecular and continuum
+            simulations, enabling access to longer timescales and the exploration of large parameter spaces. I also use hybrid
+            molecular dynamics/Monte Carlo (MD/MC) methods to study charge regulation effects in soft matter. Recently, I developed
+            charge regulation machine learning (CR-ML), a hybrid approach that accelerates the charge-update step of these
+            simulations by more than an order of magnitude.
+          </p>
+          <p><strong>Keywords:</strong> Data-Driven Surrogates, Dynamical Systems, Charge Regulation, Molecular Dynamics, Monte Carlo</p>
+        </div>
+
+        <!-- ===== Publications ===== -->
+        <div class="cv-section">
+          <h2 class="cv-heading">Publications</h2>
+          <h3 class="cv-subheading">Published</h3>
+          <ol class="cv-list">
+            <li>
+              <strong>V. Yadav</strong>, P. K. Jaiswal, R. Podgornik, and S. Kumari,
+              Charge Regulation Effect on Nanoparticle Interaction Mediated by a Polyelectrolyte,
+              <a class="cv-org" href="https://doi.org/10.1021/acs.macromol.5c03412" target="_blank" rel="noopener">Macromolecules</a> <strong>59</strong>, <strong>11</strong>, 6398-6409 (2026).
+            </li>
+            <li>
+              <strong>V. Yadav</strong>, M. Priya, M. D. Shrimali, and P. K. Jaiswal,
+              Graph Neural Network for Prediction of Phase-Ordering Kinetics,
+              <a class="cv-org" href="https://doi.org/10.1063/5.0273728" target="_blank" rel="noopener">Chaos</a> <strong>35</strong>, 061101 (2025).
+            </li>
+            <li>
+              S. Chauhan, S. Mandal, <strong>V. Yadav</strong>, P. K. Jaiswal, M. Priya, and M. D. Shrimali,
+              Machine Learning Based Prediction of Phase Ordering Dynamics,
+              <a class="cv-org" href="https://doi.org/10.1063/5.0156611" target="_blank" rel="noopener">Chaos</a> <strong>33</strong>, 061103 (2023).
+            </li>
+          </ol>
+          <h3 class="cv-subheading">In Review</h3>
+          <ol class="cv-list">
+            <li>
+              <strong>V. Yadav</strong>, P. Pandey, M. Priya, M. D. Shrimali, and P. K. Jaiswal,
+              Physics-Constrained Neural Surrogate for Domain Growth Prediction in Systems with Conserved Kinetics.
+              <a href="https://arxiv.org/abs/2606.26128" target="_blank" rel="noopener">arXiv:2606.26128</a>
+            </li>
+            <li>
+              <strong>V. Yadav</strong>, S. Kumari, and P. K. Jaiswal,
+              Machine Learning Accelerated Simulation of Charge Regulation Effects.
+            </li>
+          </ol>
+        </div>
+
+        <!-- ===== Conferences & Presentations ===== -->
+        <div class="cv-section">
+          <h2 class="cv-heading">Conferences &amp; Presentations</h2>
+          <ul class="cv-dated">
+            <li><strong>07/2026:</strong> Flash Talk: Data-Driven Modelling of Phase-Ordering Kinetics – <a href="https://sites.google.com/iitj.ac.in/sophyc-2026/schedule" target="_blank" rel="noopener">Symposium on Complex Dynamics in Chemistry, Physics, and Biology (CDCPB 2026)</a>, IIT Jodhpur, Rajasthan, India.</li>
+            <li><strong>03/2026:</strong> Oral Talk: Machine Learning and GPU-Accelerated Modeling of Phase-Ordering Kinetics – <a href="https://meetings-archive.aps.org/smt/2026/od01/50/" target="_blank" rel="noopener">APS Global Physics Summit 2026</a>, Denver, Colorado, USA. [Virtual].</li>
+            <li><strong>03/2026:</strong> Poster Presentation: Charge Regulation Effects on Polyelectrolyte-Mediated Nanoparticle Interactions – <a href="https://meetings-archive.aps.org/smt/2026/od02/91/" target="_blank" rel="noopener">APS Global Physics Summit 2026</a>, Denver, Colorado, USA. [Virtual].</li>
+            <li><strong>12/2025:</strong> Poster Presentation: Graph Neural Network for Phase-Ordering Kinetics – International Conference on Complex Fluids, IISc, Bangalore, India.</li>
+            <li><strong>05/2023:</strong> Poster Presentation: Study of Hessian Matrix Eigenvalues of the Glassy System Before and After Yield Stress and Its Prediction Using Random Matrix Theory – <a href="https://www.cecam.org/workshop-details/mesoscale-modelling-of-driven-disordered-materials-from-glasses-to-active-matter-1206" target="_blank" rel="noopener">CECAM Workshop on Mesoscale Modelling of Driven Disordered Materials: From Glasses to Active Matter</a>, EPFL, Lausanne, Switzerland.</li>
+          </ul>
+        </div>
+
+        <!-- ===== Technical Skills ===== -->
+        <div class="cv-section">
+          <h2 class="cv-heading">Technical Skills</h2>
+          <div class="skill-block">
+            <h4>Programming Languages</h4>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">Mojo</span></div>
+          </div>
+          <div class="skill-block">
+            <h4>Deep Learning</h4>
+            <div class="tag-row"><span class="tag">Graph Neural Networks</span><span class="tag">Neural Operators</span><span class="tag">PyTorch</span><span class="tag">PyTorch Geometric</span><span class="tag">JAX/FLAX</span></div>
+          </div>
+          <div class="skill-block">
+            <h4>Simulation</h4>
+            <div class="tag-row"><span class="tag">Molecular Dynamics</span><span class="tag">Monte Carlo</span><span class="tag">Finite Difference Method</span><span class="tag">LAMMPS</span></div>
+          </div>
+          <div class="skill-block">
+            <h4>Additional Tools</h4>
+            <div class="tag-row"><span class="tag">HPC/SLURM</span><span class="tag">Git</span><span class="tag">OVITO</span><span class="tag">Matplotlib</span><span class="tag">LaTeX</span></div>
+          </div>
+        </div>
+
+        <!-- ===== Awards & Achievements ===== -->
+        <div class="cv-section">
+          <h2 class="cv-heading">Awards &amp; Achievements</h2>
+          <ul class="cv-dated">
+            <li><strong>06/2026:</strong> Article <em>Charge Regulation Effect on Nanoparticle Interaction Mediated by a Polyelectrolyte</em> selected for the front cover of <a class="cv-org" href="https://pubs.acs.org/mamobx/issue/59/11" target="_blank" rel="noopener">Macromolecules</a>, Vol. 59, Issue 11.</li>
+            <li><strong>05/2023:</strong> Institute travel grant to present at the CECAM workshop at EPFL, Lausanne, Switzerland.</li>
+          </ul>
+        </div>
+
+        <!-- ===== Teaching & Mentorship ===== -->
+        <div class="cv-section">
+          <h2 class="cv-heading">Teaching &amp; Mentorship</h2>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <span class="cv-role">Teaching Assistant</span>
+              <span class="cv-meta">2023 – 2025</span>
+            </div>
+            <div class="cv-meta">Indian Institute of Technology Jodhpur</div>
+            <ul>
+              <li>Delivered lectures and tutorials on Python programming, algorithms, numerical methods, and data visualization for B.S. and M.Sc. students, with the largest class exceeding 30 students.</li>
+            </ul>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <span class="cv-role">B.S. and M.Sc. Student Mentor</span>
+              <span class="cv-meta">2022 – 2026</span>
+            </div>
+            <div class="cv-meta">Indian Institute of Technology Jodhpur</div>
+            <ul>
+              <li>Mentored four M.Sc. and two B.S. students on their thesis research projects.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ===== Languages ===== -->
+        <div class="cv-section">
+          <h2 class="cv-heading">Languages</h2>
+          <div class="tag-row">
+            <span class="tag">English — Fluent</span>
+            <span class="tag">Hindi — Mother Tongue</span>
+          </div>
+        </div>
+
+        <!-- ===== Open-Source Projects ===== -->
+        <div class="cv-section">
+          <h2 class="cv-heading">Open-Source Projects</h2>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <a class="cv-role" href="https://github.com/ivijayyadav/simpok" target="_blank" rel="noopener">Simpok</a>
+              <a class="cv-meta" href="https://pypi.org/project/simpok/" target="_blank" rel="noopener"><code>pip install simpok</code></a>
+            </div>
+            <p>
+              A Python package for phase-field simulation of phase-ordering kinetics, with all compute kernels written in Mojo.
+              It provides Time-Dependent Ginzburg–Landau (Model A), Cahn–Hilliard–Cook (Model B), and surface-directed spinodal
+              decomposition solvers. Same code runs on CPU and a GPU backend (NVIDIA, AMD, Apple).
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <script src="assets/js/main.js"></script>
