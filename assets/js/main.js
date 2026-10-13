@@ -40,11 +40,17 @@
 
   /* ---- Wire up buttons once the DOM is ready --------------------------- */
   document.addEventListener("DOMContentLoaded", function () {
-    var themeBtn = document.querySelector(".theme-toggle");
-    if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
-
     var navToggle = document.querySelector(".nav-toggle");
     var navLinks = document.querySelector(".nav-links");
+
+    var themeBtn = document.querySelector(".theme-toggle");
+    if (themeBtn) {
+      themeBtn.addEventListener("click", function () {
+        toggleTheme();
+        // On mobile the toggle lives inside the menu; close it once the theme is applied
+        if (navLinks) navLinks.classList.remove("open");
+      });
+    }
     if (navToggle && navLinks) {
       navToggle.addEventListener("click", function () {
         navLinks.classList.toggle("open");

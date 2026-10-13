@@ -23,7 +23,8 @@
   --thumb-bg:      #eef1f5;
 
   --content-width: 1180px;
-  --font-body: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Roboto Slab", Georgia, serif;
 }
 
 /* ---- Design tokens: DARK theme ---- */
@@ -60,7 +61,7 @@ body {
 a { color: var(--link); text-decoration: none; }
 a:hover { color: var(--link-hover); text-decoration: underline; }
 img { max-width: 100%; display: block; }
-h1, h2, h3 { color: var(--heading); line-height: 1.25; }
+h1, h2, h3 { font-family: var(--font-heading); color: var(--heading); line-height: 1.25; }
 
 .container {
   width: 100%;
@@ -90,7 +91,8 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   gap: 1.5rem;
 }
 .nav-brand {
-  font-weight: 800;
+  font-family: var(--font-heading);
+  font-weight: 400;
   font-size: 1.3rem;
   color: var(--heading);
   white-space: nowrap;
@@ -105,7 +107,7 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
 .nav-links a {
   color: var(--text);
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 1.08rem;
 }
 .nav-links a:hover { color: var(--link); text-decoration: none; }
 .nav-links a.active { color: var(--link); }
@@ -183,9 +185,9 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   font-weight: 400;
   margin: 0 0 1.25rem;
 }
-.bio p { margin: 0 0 1.1rem; }
-/* Institution names sit in the text colour; the link shows on hover */
-.bio > p a,
+.bio p { margin: 0 0 1.1rem; text-align: justify; hyphens: auto; }
+/* Bio links sit in the text colour; the link shows on hover */
+.bio > p a { color: inherit; }
 .edu-school a { color: var(--link); }
 
 /* Interests + Education */
@@ -370,15 +372,31 @@ a.cv-role { color: var(--link); }
 /* Year groups on the Publications page: compact, divided by a thin rule */
 .pub-year { border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 1.25rem; }
 .pub-year .year-tag { margin-bottom: 0.6rem; }
+/* Google Scholar–style entries: linked title, then authors, then venue */
+.gs-list { padding-left: 1.4rem; margin: 0; }
+.gs-list li::marker { font-weight: 700; color: var(--text-muted); }
+.gs-list li { padding: 0.6rem 0; }
+.gs-list li + li { border-top: 1px dashed var(--border); }
+.gs-title { font-size: 1.08rem; font-weight: 700; line-height: 1.4; color: var(--heading); }
+.gs-link-pending { color: var(--link); }
+
+/* Research page */
+.research-intro { margin: 0 0 1.5rem; text-align: justify; hyphens: auto; }
+.research-text { margin: 0 0 0.7rem; text-align: justify; hyphens: auto; }
+.research-papers { margin: 0; padding-left: 1.2rem; font-size: 0.95rem; color: var(--text-muted); }
+.research-papers li { margin-bottom: 0.3rem; }
+.gs-authors { color: var(--text); font-size: 0.95rem; line-height: 1.5; }
+.gs-venue { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
 
 .year-tag {
   display: inline-block;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--pill-text);
-  background: var(--thumb-bg);
-  border-radius: 6px;
-  padding: 0.2rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  /* Same colours as the "Cover Page" tag on the homepage (.pub-tag--cover) */
+  color: #7a3e00;
+  background: #ffe0b2;
+  border-radius: 4px;
+  padding: 0.1rem 0.6rem;
   margin: 0 0 1rem;
 }
 
@@ -457,7 +475,7 @@ a.cv-role { color: var(--link); }
     justify-content: flex-start;
     border-radius: 0;
     font-weight: 600;
-    font-size: 0.98rem;
+    font-size: 1.08rem;
   }
   .theme-toggle:hover { background: none; }
   .theme-label { display: inline; }
