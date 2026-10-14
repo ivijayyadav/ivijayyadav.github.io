@@ -307,8 +307,7 @@ h1, h2, h3 { font-family: var(--font-heading); color: var(--heading); line-heigh
 .site-footer a { color: var(--text-muted); text-decoration: none; }
 
 /* =========================================================================
-   Divider: a line that fades out at both ends, with a small diamond in the
-   middle. Drawn at the top edge of each element listed (Home: only above
+   Divider: a line that fades out at both ends, blue in the middle. Drawn at the top edge of each element listed (Home: only above
    Highlights; Publications: only below the intro; Research: entries).
    ========================================================================= */
 .hero + .section,
@@ -327,21 +326,6 @@ h1, h2, h3 { font-family: var(--font-heading); color: var(--heading); line-heigh
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--pill-border) 20%, var(--link) 50%, var(--pill-border) 80%, transparent);
-}
-.hero + .section::after,
-.split-section + .split-section::after,
-.pub-summary + .pub-year::after,
-.research-entry::after {
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  width: 9px;
-  height: 9px;
-  margin-left: -5px;
-  background: var(--bg);
-  border: 2px solid var(--link);
-  transform: rotate(45deg);
 }
 
 /* =========================================================================

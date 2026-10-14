@@ -57,13 +57,27 @@
       });
     }
 
-    // Research videos autoplay muted; respect "reduce motion" by pausing them and showing controls
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      document.querySelectorAll(".research-video").forEach(function (v) {
-        v.removeAttribute("autoplay");
-        v.pause();
-        v.controls = true;
-      });
+    // Research videos: nothing is downloaded until a video is close to the screen
+    // (preload="none"); then it plays muted on a loop, and pauses again once scrolled away.
+    // With "reduce motion" on, videos never autoplay and get controls instead.
+    var videos = document.querySelectorAll(".research-video");
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      videos.forEach(function (v) { v.controls = true; });
+    } else if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            var p = e.target.play();
+            if (p && p.catch) p.catch(function () {});   // ignore autoplay refusals
+          } else {
+            e.target.pause();
+          }
+        });
+      }, { rootMargin: "200px 0px" });
+      videos.forEach(function (v) { io.observe(v); });
+    } else {
+      videos.forEach(function (v) { v.autoplay = true; v.play(); });
     }
 
     // Auto-update the year in the footer
