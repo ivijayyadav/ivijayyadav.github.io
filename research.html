@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research · Vijay Yadav</title>
+  <meta name="description" content="Research of Vijay Yadav: machine learning for charge regulation simulations, nanoparticle–polyelectrolyte complexes, and data-driven surrogates for phase separation.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Roboto+Slab:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- =====================================================================
+       NAVIGATION  (same bar as the homepage; "Research" is active here)
+       ===================================================================== -->
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">Vijay Yadav</a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="research.html" class="active">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="cv.html">CV</a>
+
+        <button class="icon-btn theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <span class="theme-label">Dark mode</span>
+        </button>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn nav-toggle" aria-label="Open menu" title="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="section">
+      <h1 class="section-title">Research</h1>
+      <p class="research-intro">
+        We use computer simulations and scientific machine learning to investigate a broad range of soft matter problems including charge regulation effects
+        and phase separation dynamics.
+      </p>
+
+      <div class="research-list">
+
+        <!-- ===== Entry 1 ===== -->
+        <article class="research-entry">
+          <div class="research-body">
+            <h2 class="research-title">Using Machine Learning to Accelerate Charge Regulation Simulations</h2>
+            <p class="research-summary">
+              Charge regulation simulations combine molecular dynamics with Monte Carlo (CR-MC) moves that let ionizable groups gain or lose charge, but this <span class="nowrap">charge-update</span> step is computationally expensive. We developed charge regulation machine learning (CR-ML), a hybrid approach in which a trained model performs this step, accelerating simulations by more than an order of magnitude.
+            </p>
+          </div>
+          <video class="research-video" src="assets/video/cr_ml.mp4" poster="assets/video/cr_ml.jpg"
+                 autoplay muted loop playsinline preload="metadata" aria-label="Polyelectrolyte chain simulated with CR-MC (left) and CR-ML (right); red monomers are ionized, white are neutral"></video>
+        </article>
+
+        <!-- ===== Entry 2 ===== -->
+        <article class="research-entry">
+          <div class="research-body">
+            <h2 class="research-title">Charge Regulation Effects in Complex Systems</h2>
+            <p class="research-summary">
+              Nanoparticles, polyelectrolytes and other soft matter building blocks carry charges that adjust to pH, salt and their surroundings. Using hybrid molecular dynamics/Monte Carlo simulations, we study how charge regulation reshapes interactions and structure in complex systems, such as <span class="nowrap">polyelectrolyte-mediated</span> interactions between nanoparticles, work featured on the cover of <em>Macromolecules</em>.
+            </p>
+          </div>
+          <video class="research-video" src="assets/video/charge_regulation.mp4" poster="assets/video/charge_regulation.jpg"
+                 autoplay muted loop playsinline preload="metadata" aria-label="Charge regulation in a nanoparticle–polyelectrolyte complex"></video>
+        </article>
+
+        <!-- ===== Entry 3 ===== -->
+        <article class="research-entry">
+          <div class="research-body">
+            <h2 class="research-title">Data-Driven Surrogate Models for Phase Separation Dynamics</h2>
+            <p class="research-summary">
+              Phase separation and domain growth are multiscale processes that are costly to simulate over long times. We develop <span class="nowrap">physics-guided</span>, <span class="nowrap">data-driven</span> surrogate models, including graph neural networks and <span class="nowrap">physics-constrained</span> neural surrogates, that learn <span class="nowrap">phase-ordering</span> dynamics from simulation data, reaching longer timescales while preserving conservation laws.
+            </p>
+          </div>
+          <video class="research-video" src="assets/video/phase_separation.mp4" poster="assets/video/phase_separation.jpg"
+                 autoplay muted loop playsinline preload="metadata" aria-label="Surrogate model prediction of phase separation dynamics"></video>
+        </article>
+
+      </div>
+
+      <p class="research-more"><a href="publications.html">View all publications →</a></p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      © <span id="year">2026</span> Vijay Yadav
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

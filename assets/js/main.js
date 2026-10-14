@@ -57,6 +57,15 @@
       });
     }
 
+    // Research videos autoplay muted; respect "reduce motion" by pausing them and showing controls
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll(".research-video").forEach(function (v) {
+        v.removeAttribute("autoplay");
+        v.pause();
+        v.controls = true;
+      });
+    }
+
     // Auto-update the year in the footer
     var yearEl = document.getElementById("year");
     if (yearEl) yearEl.textContent = new Date().getFullYear();

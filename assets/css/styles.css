@@ -21,6 +21,8 @@
   --pill-hover-bg: #2867d8;
   --shadow:        0 1px 3px rgba(0, 0, 0, 0.08);
   --thumb-bg:      #eef1f5;
+  --band-bg:       #e2ebfb;   /* Publications year bands */
+  --band-text:     #1d4fa8;
 
   --content-width: 1180px;
   --font-body: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -43,6 +45,8 @@
   --pill-hover-bg: #3b6bc4;
   --shadow:        0 1px 3px rgba(0, 0, 0, 0.4);
   --thumb-bg:      #333842;
+  --band-bg:       #2c3d5a;
+  --band-text:     #b9d2ff;
 }
 
 /* ---- Reset & base ---- */
@@ -222,7 +226,6 @@ h1, h2, h3 { font-family: var(--font-heading); color: var(--heading); line-heigh
   gap: 2.5rem;
   align-items: start;
 }
-.split-section + .split-section { border-top: 1px solid var(--border); }
 
 /* Publications */
 .pub-item {
@@ -304,6 +307,44 @@ h1, h2, h3 { font-family: var(--font-heading); color: var(--heading); line-heigh
 .site-footer a { color: var(--text-muted); text-decoration: none; }
 
 /* =========================================================================
+   Divider: a line that fades out at both ends, with a small diamond in the
+   middle. Drawn at the top edge of each element listed (Home: only above
+   Highlights; Publications: only below the intro; Research: entries).
+   ========================================================================= */
+.hero + .section,
+.split-section + .split-section,
+.pub-summary + .pub-year,
+.research-entry { position: relative; }
+
+.hero + .section::before,
+.split-section + .split-section::before,
+.pub-summary + .pub-year::before,
+.research-entry::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pill-border) 20%, var(--link) 50%, var(--pill-border) 80%, transparent);
+}
+.hero + .section::after,
+.split-section + .split-section::after,
+.pub-summary + .pub-year::after,
+.research-entry::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin-left: -5px;
+  background: var(--bg);
+  border: 2px solid var(--link);
+  transform: rotate(45deg);
+}
+
+/* =========================================================================
    CV page
    ========================================================================= */
 .page-header {
@@ -370,8 +411,18 @@ a.cv-role { color: var(--link); }
 .cv-list { padding-left: 1.2rem; margin: 0; }
 .cv-list li { margin-bottom: 0.7rem; }
 /* Year groups on the Publications page: compact, divided by a thin rule */
-.pub-year { border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 1.25rem; }
-.pub-year .year-tag { margin-bottom: 0.6rem; }
+.pub-year { padding-top: 1.25rem; margin-top: 1.25rem; }  /* the stretched year band separates groups; no rule needed */
+/* On Publications the year tag is stretched a little into a short band that fades out to the right */
+.pub-year .year-tag {
+  display: block;
+  width: 14rem;
+  max-width: 100%;
+  margin-bottom: 0.6rem;
+  padding: 0.25rem 0.8rem;
+  color: var(--band-text);
+  background: linear-gradient(90deg, var(--band-bg) 0%, var(--band-bg) 55%, transparent 100%);
+}
+.pub-summary + .pub-year { border-top: 0; }  /* gets the fancy divider instead */
 /* Google Scholar–style entries: linked title, then authors, then venue */
 .gs-list { padding-left: 1.4rem; margin: 0; }
 .gs-list li::marker { font-weight: 700; color: var(--text-muted); }
@@ -380,11 +431,94 @@ a.cv-role { color: var(--link); }
 .gs-title { font-size: 1.08rem; font-weight: 700; line-height: 1.4; color: var(--heading); }
 .gs-link-pending { color: var(--link); }
 
-/* Research page */
-.research-intro { margin: 0 0 1.5rem; text-align: justify; hyphens: auto; }
-.research-text { margin: 0 0 0.7rem; text-align: justify; hyphens: auto; }
+/* Research page: video on one side, title + papers on the other, alternating */
+.research-intro { margin: 0 0 1.5rem; }
+.research-entry {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-areas: "media body";
+  gap: 2.5rem;
+  align-items: center;
+  padding: 3rem 0;
+}
+.research-entry:nth-child(even) { grid-template-columns: 1fr 1.3fr; grid-template-areas: "body media"; }
+
+.research-body { grid-area: body; }
+.research-title { font-size: 1.45rem; font-weight: 700; margin: 0 0 0.8rem; color: var(--link); }  /* blue, like the Highlights titles on Home */
+.research-summary { margin: 0 0 0.8rem; }
+.nowrap { white-space: nowrap; }  /* keep hyphenated words like "physics-guided" on one line */
 .research-papers { margin: 0; padding-left: 1.2rem; font-size: 0.95rem; color: var(--text-muted); }
-.research-papers li { margin-bottom: 0.3rem; }
+.research-papers li { margin-bottom: 0.4rem; }
+
+/* Video frame: no hard border, just a stack of soft shadows so the card looks lifted off the
+   page and fades into it; tilted slightly towards the text for a 3D look, flat on hover */
+.research-media,
+.research-video {
+  --tilt: 5deg;
+  grid-area: media;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 14px;
+  background: var(--thumb-bg);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 1px 2px rgba(15, 23, 42, 0.08),
+    0 6px 12px -4px rgba(15, 23, 42, 0.14),
+    0 22px 44px -16px rgba(15, 23, 42, 0.32),
+    0 48px 90px -40px rgba(40, 103, 216, 0.28);
+  transform: perspective(1400px) rotateY(var(--tilt));
+  transition: transform 0.45s cubic-bezier(.2, .7, .2, 1), box-shadow 0.45s ease;
+}
+/* Video on the right of the text: tilt the other way, still facing the text */
+.research-entry:nth-child(even) .research-media,
+.research-entry:nth-child(even) .research-video { --tilt: -5deg; }
+.research-media:hover,
+.research-video:hover {
+  transform: perspective(1400px) rotateY(0deg) translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 2px 4px rgba(15, 23, 42, 0.08),
+    0 10px 20px -6px rgba(15, 23, 42, 0.18),
+    0 30px 56px -18px rgba(15, 23, 42, 0.38),
+    0 60px 110px -40px rgba(40, 103, 216, 0.35);
+}
+/* On the dark theme, dark shadows vanish; use a faint blue halo instead */
+[data-theme="dark"] .research-media,
+[data-theme="dark"] .research-video {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 40px -16px rgba(0, 0, 0, 0.6),
+    0 0 60px -10px rgba(91, 155, 255, 0.22);
+}
+@media (prefers-reduced-motion: reduce) {
+  .research-media, .research-video { transition: none; }
+}
+.research-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, rgba(127, 127, 127, 0.06) 14px 28px),
+    var(--thumb-bg);
+}
+.research-media svg {
+  width: 54px;
+  height: 54px;
+  padding: 14px 12px 14px 16px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--link);
+  box-shadow: 0 6px 16px -6px var(--link);
+}
+/* Videos keep their own shape so the picture fills the frame edge to edge */
+.research-video { aspect-ratio: auto; height: auto; object-fit: cover; background: #000; }
+.research-more { margin: 1rem 0 0; font-weight: 700; }
 .gs-authors { color: var(--text); font-size: 0.95rem; line-height: 1.5; }
 .gs-venue { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
 
@@ -423,6 +557,18 @@ a.cv-role { color: var(--link); }
 }
 
 @media (max-width: 860px) {
+  .research-media,
+  .research-video,
+  .research-entry:nth-child(even) .research-media,
+  .research-entry:nth-child(even) .research-video { --tilt: 0deg; }
+  .research-entry,
+  .research-entry:nth-child(even) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "media" "body";
+    gap: 1.1rem;
+    padding: 1.75rem 0;
+  }
+
   .hero-grid,
   .split-grid,
   .info-grid { grid-template-columns: 1fr; }
