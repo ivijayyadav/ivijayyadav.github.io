@@ -395,17 +395,28 @@ a.cv-role { color: var(--link); }
 .cv-list { padding-left: 1.2rem; margin: 0; }
 .cv-list li { margin-bottom: 0.7rem; }
 /* Year groups on the Publications page: compact, divided by a thin rule */
-.pub-year { padding-top: 1.25rem; margin-top: 1.25rem; }  /* the stretched year band separates groups; no rule needed */
-/* On Publications the year tag is stretched a little into a short band that fades out to the right */
+/* Publications: two columns per year group, year label on the left (sticky while its group
+   scrolls past), papers on the right behind a thin vertical rule */
+.pub-year {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  column-gap: 2rem;
+  align-items: start;
+  padding: 1.5rem 0;
+}
+.pub-year + .pub-year { border-top: 1px solid var(--border); }
 .pub-year .year-tag {
+  position: sticky;
+  top: 84px;                       /* clears the sticky nav bar */
   display: block;
-  width: 14rem;
-  max-width: 100%;
-  margin-bottom: 0.6rem;
-  padding: 0.25rem 0.8rem;
+  width: 100%;
+  margin: 0.55rem 0 0;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.95rem;
   color: var(--band-text);
   background: linear-gradient(90deg, var(--band-bg) 0%, var(--band-bg) 55%, transparent 100%);
 }
+.pub-year .gs-list { border-left: 1px solid var(--border); padding-left: 3rem; }
 .pub-summary + .pub-year { border-top: 0; }  /* gets the fancy divider instead */
 /* Google Scholar–style entries: linked title, then authors, then venue */
 .gs-list { padding-left: 1.4rem; margin: 0; }
@@ -541,6 +552,11 @@ a.cv-role { color: var(--link); }
 }
 
 @media (max-width: 860px) {
+  /* Publications: stack the year label above its papers */
+  .pub-year { grid-template-columns: 1fr; row-gap: 0.6rem; }
+  .pub-year .year-tag { position: static; width: 14rem; max-width: 100%; margin: 0; }
+  .pub-year .gs-list { border-left: 0; padding-left: 1.4rem; }
+
   .research-media,
   .research-video,
   .research-entry:nth-child(even) .research-media,
